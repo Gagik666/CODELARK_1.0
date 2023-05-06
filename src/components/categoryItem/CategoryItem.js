@@ -9,7 +9,7 @@ export const CategoryItem = ({ categoryItem, item, navigate }) => {
 
 
     const [showItem, setShowItem] = useState(false)
-    const [fillArrow, setFillArrow] = useState(COLOR.arrowBlue)
+    const [fillArrow, setFillArrow] = useState(COLOR.black)
     const animatioControler = useRef(new Animated.Value(0)).current
 
     const click = () => {
@@ -53,13 +53,7 @@ export const CategoryItem = ({ categoryItem, item, navigate }) => {
                                     style={styles.itemImg}
                                     source={item.image}
                                 />
-                                <View style={{ flex: 1 }}>
-
-                                    <Text style={styles.itemText}>{item.itemName}</Text>
-                                    <Text style={styles.itemText}>1 item</Text>
-                                </View>
-
-
+                                <Text style={styles.itemText}>{item.itemName}</Text>
                                 <ArrowRightIcone />
                             </TouchableOpacity>
                         )}

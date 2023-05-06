@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLOR.backgraund,
-         
+        
     },
     flatList: {
         alignSelf: "center",

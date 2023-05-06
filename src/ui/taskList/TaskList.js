@@ -29,6 +29,7 @@ export const TaskList = ({ navigation, route }) => {
     getCurrentTask(name)
     navigation.navigate("TaskItems", {
       title,
+      name
     })
   }
 

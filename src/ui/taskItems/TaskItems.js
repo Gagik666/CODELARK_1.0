@@ -16,11 +16,13 @@ export const TaskItems = ({ navigation, route }) => {
 	const taskList = useSelector(selectTaskList)
 
 
-	const onNav = (title, id) => {
+	const onNav = (title, id, name) => {
 		navigation.navigate("Task", {
 			title,
-			id
+			id,
+			name
 		})
+	 
 	}
 
 	return (
@@ -30,7 +32,7 @@ export const TaskItems = ({ navigation, route }) => {
 				data={taskList}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
-					<TouchableOpacity style={styles.touchItem} onPress={() => onNav(item.title, item.id)}>
+					<TouchableOpacity style={styles.touchItem} onPress={() => onNav(item.title, item.id,route.params.name)}>
 						{/* <CompletedIcone fill={item.isCompleted === "false" ? COLOR.arrowBlue : COLOR.green} /> */}
 						<Text style={styles.toucText}>{item.title}</Text>
 						<ArrowRightIcone />

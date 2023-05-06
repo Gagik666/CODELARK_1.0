@@ -5,26 +5,33 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    gameTahle: {
+    gameTable: {
         backgroundColor: COLOR.taskBackgraund,
         width: "100%",
-        height: "50%",
+        height: "55%",
     },
     viewFooter: {
         padding: 16,
         backgroundColor: COLOR.backgraund,
-        height: "42%"
+        height: "37%"
     },
     txtFooter: {
         color: COLOR.black,
         fontSize: 18,
-        marginVertical: 4,
+
     },
     txtInput: {
         backgroundColor: COLOR.white,
         width: "80%",
-        marginStart: 20,
+        marginStart: 10,
         fontSize: 18,
         color: COLOR.black,
+    },
+    viewCoin: {
+        
+        height: 50,
+        margin: 16,
+        justifyContent: 'center',
+        alignItems: "center"
     }
 })

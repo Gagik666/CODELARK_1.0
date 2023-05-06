@@ -11,16 +11,6 @@ const initialState = {
                     name: "flexBox_mob",
                     title: "FlexBox"
                 },
-                {
-                    id: 1,
-                    name: "flexBox_mob2",
-                    title: "FlexBox2"
-                },
-                {
-                    id: 2,
-                    name: "flexBox_mob3",
-                    title: "FlexBox3"
-                },
             ]
         },
         {
@@ -30,16 +20,6 @@ const initialState = {
                     id: 0,
                     name: "flexBox_web",
                     title: "FlexBox"
-                },
-                {
-                    id: 1,
-                    name: "flexBox_web2",
-                    title: "FlexBox2"
-                },
-                {
-                    id: 2,
-                    name: "flexBox_web3",
-                    title: "FlexBox3"
                 },
             ]
         },

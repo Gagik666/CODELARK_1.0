@@ -21,7 +21,7 @@ export const Home = ({ navigation }) => {
       <FlatList
         style={styles.flatList}
         data={category}
-        renderItem={({ item }) => <CategoryItem categoryItem={item} item={item.item} navigate={(text) => navTaskList(text, item.id)} />}
+        renderItem={({ item }) => <CategoryItem  categoryItem={item} item={item.item} navigate={(text) => navTaskList(text, item.id)} />}
       />
     </View>
   )
