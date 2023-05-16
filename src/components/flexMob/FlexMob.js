@@ -9,12 +9,13 @@ import { COLOR } from '../../assets/colors/Colors';
 import { CheckBottomSheet } from '../../components/checkButtonSheet/CheckButtonSheet';
 import { UnCheckBottomSheet } from '../../components/unCheckBottomSheet/UnCheckBottomSheet';
 import { deepEqual } from 'fast-equals';
+import { ScrollView } from 'react-native';
 
 export const FlexMob = ({ id, onNav }) => {
     const taskList = useSelector(selectTaskList)
     const flexText = useSelector(selectFlexTExtInput)
     const textInputColor = useSelector(selectFlexTExtInputColor)
-    const [flex, setFlex] = useState({ flexWrap: "wrap"})
+    const [flex, setFlex] = useState({ flexWrap: "wrap" })
     const [coinWidth, setCoinWidth] = useState(taskList[id].coin_width)
     const [flexItem, setFlexItem] = useState({})
     const dispatch = useDispatch()
@@ -37,13 +38,17 @@ export const FlexMob = ({ id, onNav }) => {
                 } else {
                     dispatch(edtUnCheckVisibleBottomSheet(true))
                     dispatch(editFlextTextInputColor(COLOR.red))
+                    console.log(stringToObject(flexText));
                 }
             }
         }
 
     }
     const stringToObject = (text) => {
-        const arr = text.replace(/;/g, ":").split(":").map(str => str.replace(/\s/g, ""))
+        const arr = text.replace(/;/g, ":")
+            .split(":")
+            .map(str => str.replace(/\s/g, ""))
+            .filter(item => item !== "")
         const obj = {};
         for (let i = 0; i < arr.length; i += 2) {
             obj[arr[i]] = arr[i + 1];
@@ -90,15 +95,18 @@ export const FlexMob = ({ id, onNav }) => {
 
                 </View>
             </View>
-            <View style={styles.viewFooter}>
+
+            <ScrollView style={styles.viewFooter}>
                 <Text style={styles.txtFooter}>{`${taskList[id].flex_class}  {`} </Text>
                 <TextInput
                     value={flexText}
                     style={[styles.txtInput, { color: textInputColor }]}
                     multiline={true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
                     onChangeText={(text) => dispatch(editFlextTextInput(text))} />
                 <Text style={styles.txtFooter} >{"}"} </Text>
-            </View>
+            </ScrollView>
             <Button title="Check" containerStyle={{ marginHorizontal: 16, marginBottom: 16 }} onPress={onCheck} />
             <UnCheckBottomSheet />
             <CheckBottomSheet onNav={onNav} />

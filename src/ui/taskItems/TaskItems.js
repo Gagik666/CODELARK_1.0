@@ -1,11 +1,10 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { selectTaskList } from '../../redux/reducers/taskReducer/TaskReducer';
 import { styles } from './Style';
 import { ArrowRightIcone } from '../../assets/icones/ArrowRightIcone';
-import { CompletedIcone } from '../../assets/icones/CompletedIcone';
-import { COLOR } from '../../assets/colors/Colors';
+
 export const TaskItems = ({ navigation, route }) => {
 
 	useEffect(() => {
@@ -22,17 +21,25 @@ export const TaskItems = ({ navigation, route }) => {
 			id,
 			name
 		})
-	 
+
 	}
 
 	return (
 		<View style={styles.container}>
+			{
+				taskList.length === 0 ?
+					<View style={{ height: "100%", width: "100%", justifyContent: 'center', alignItems: 'center', position: 'absolute' }}>
+						<ActivityIndicator size={60} />
+					</View> : null
+			}
+
+
 			<FlatList
 				style={styles.flatList}
 				data={taskList}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
-					<TouchableOpacity style={styles.touchItem} onPress={() => onNav(item.title, item.id,route.params.name)}>
+					<TouchableOpacity style={styles.touchItem} onPress={() => onNav(item.title, item.id, route.params.name)}>
 						{/* <CompletedIcone fill={item.isCompleted === "false" ? COLOR.arrowBlue : COLOR.green} /> */}
 						<Text style={styles.toucText}>{item.title}</Text>
 						<ArrowRightIcone />

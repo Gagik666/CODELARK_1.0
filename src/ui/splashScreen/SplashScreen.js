@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Image, StatusBar } from 'react-native'
 import React, {useEffect} from 'react'
 import { styles } from './Style'
 
@@ -6,14 +6,18 @@ export const SplashScreen = ({navigation}) => {
 
     useEffect(() => {
       setTimeout(() => {
-        navigation.navigate("Home")
-      }, 500);
+        navigation.replace("Home")
+      }, 1000);
     }, [])
     
 
   return (
     <View style = {styles.container}>
-      <Text>SplashScreen</Text>
+      <StatusBar barStyle="dark-content" backgroundColor="#EDEAE7" />
+      <Image
+          source={require('../../assets/images/CODELARK.png')}
+          style={styles.img}
+        />
     </View>
   )
 }

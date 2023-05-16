@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, ScrollView} from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './Style';
 import { CoinIcone } from '../../assets/icones/CoinIcone';
@@ -44,7 +44,11 @@ export const FlexWeb = ({ id, onNav }) => {
     const stringToObject = (text) => {
         let arr = []
         if (taskList[id].table_item) {
-            arr = text.replace(/;/g, ":").split(":").map(str => str.replace(/\s/g, "")).map((el, i) => {
+            arr = text.replace(/;/g, ":")
+            .split(":")
+            .map(str => str.replace(/\s/g, ""))
+            .filter(item => item !== "")
+            .map((el, i) => {
                 if (i % 2 === 0) {
                     let index = el.indexOf("-")
                     let chars = el.split('');
@@ -55,7 +59,11 @@ export const FlexWeb = ({ id, onNav }) => {
             })
         } else {
             if (text.includes('flex-direction')) {
-                arr = text.replace(/;/g, ":").split(":").map(str => str.replace(/\s/g, "")).map((el, i) => {
+                arr = text.replace(/;/g, ":")
+                .split(":")
+                .map(str => str.replace(/\s/g, ""))
+                .filter(item => item !== "")
+                .map((el, i) => {
                     if (i % 2 === 0) {
                         let index = el.indexOf("-")
                         let chars = el.split('');
@@ -65,7 +73,11 @@ export const FlexWeb = ({ id, onNav }) => {
                     return el
                 })
             } else {
-                arr = `flex-direction: row ; ${text}`.replace(/;/g, ":").split(":").map(str => str.replace(/\s/g, "")).map((el, i) => {
+                arr = `flex-direction: row ; ${text}`.replace(/;/g, ":")
+                .split(":")
+                .map(str => str.replace(/\s/g, ""))
+                .filter(item => item !== "")
+                .map((el, i) => {
                     if (i % 2 === 0) {
                         let index = el.indexOf("-")
                         let chars = el.split('');
@@ -77,6 +89,7 @@ export const FlexWeb = ({ id, onNav }) => {
 
             }
         }
+        console.log(arr);
         const obj = {};
         for (let i = 0; i < arr.length; i += 2) {
             obj[arr[i]] = arr[i + 1];
@@ -101,36 +114,38 @@ export const FlexWeb = ({ id, onNav }) => {
                         })
                     }
                 </View>
-                <View style={[flex, { height: "100%", width: "100%"  }]} >
+                <View style={[flex, { height: "100%", width: "100%" }]} >
                     {
                         taskList[id].items.map((item, index) => {
                             if (index === 2) {
                                 return (
-                                    <View style={[styles.viewCoin, flexItem, {width: coinWidth}]} key={index}>
-                                        <CoinIcone fill={item.coin_color}   />
+                                    <View style={[styles.viewCoin, flexItem, { width: coinWidth }]} key={index}>
+                                        <CoinIcone fill={item.coin_color} />
                                     </View>
                                 )
                             } else {
                                 return (
-                                    <View style={[styles.viewCoin, {width: coinWidth}]} key={index}>
-                                        <CoinIcone fill={item.coin_color}  />
+                                    <View style={[styles.viewCoin, { width: coinWidth }]} key={index}>
+                                        <CoinIcone fill={item.coin_color} />
                                     </View>
                                 )
                             }
                         })
                     }
-                   
+
                 </View>
             </View>
-            <View style={styles.viewFooter}>
+            <ScrollView style={styles.viewFooter}>
                 <Text style={styles.txtFooter}>{`${taskList[id].flex_class}  {\n   ${taskList[id].flex_text}`} </Text>
                 <TextInput
                     value={flexText}
                     style={[styles.txtInput, { color: textInputColor }]}
+                    autoCapitalize="none"
+                    autoCorrect={false}
                     multiline={true}
                     onChangeText={(text) => dispatch(editFlextTextInput(text))} />
                 <Text style={styles.txtFooter} >{"}"} </Text>
-            </View>
+            </ScrollView >
             <Button title="Check" containerStyle={{ marginHorizontal: 16, marginBottom: 16 }} onPress={onCheck} />
             <UnCheckBottomSheet />
             <CheckBottomSheet onNav={onNav} />
